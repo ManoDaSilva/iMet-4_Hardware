@@ -32,7 +32,7 @@ Component side │3 6│
                 └───┘
 				
  ```
-1.
+1. PWRON (to switching circuitry)
 2. RX (via R24/220ohm to STM32 PA10)
 3. TX (via R25/220ohm to STM32 PA9)
 4. GND
@@ -42,6 +42,8 @@ Component side │3 6│
 8. SWDIO (to STM32 PA13)
 
 #STM32 Wiring
+Still WIP. I'm probing all the pins... 
+
 1.
 2.
 3.
@@ -49,6 +51,10 @@ Component side │3 6│
 5.
 6.
 12. PA2/USART2_TX ==> to Ublox GPS via 220ohm
-13. PA3/USART3_RX ==> tu Ublox GPS via 220ohm
-34. PA13/SWDIO
-37. PA14/SWCLK
+13. PA3/USART3_RX ==> to Ublox GPS via 220ohm
+26. PB13 		  ==> to LED1 via 180ohm
+27. PB14 		  ==> to LED2 via 180ohm
+28. PB15 		  ==> to LED3 via 180ohm
+29. PA8 		  ==> to LED4 via 180ohm
+34. PA13/SWDIO	  ==> to edge card pin 8
+37. PA14/SWCLK	  ==> to edge card pin 5
