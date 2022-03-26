@@ -42,7 +42,7 @@ Component side │3 6│
 6. VCC (+3.3V)
 7. VBATT
 8. SWDIO (to STM32 PA13)
-²
+
 # STM32 Pin Assignment
 Still WIP. I'm probing all the pins... 
 
