@@ -12,14 +12,15 @@ This sonde's structure is very similar to the RS-41's.
 # Main component list
 * U1: K30 - Unidentified.
 * U2: [LTC3534 Buck-Boost DC/DC Converter](datasheets/ltc3534.pdf)
-* U3: Not found yet.
-* U4: [MEAS MS560702BA03](datasheets/MS560702BA03.pdf)
-* U5: [Ublox CAM-M8Q-0-10](datasheets/CAM-M8-FW3.pdf)
-* U6: [STM32F373C8T6](datasheets/stm32f373xxx)
-* U7: [RFPA0133](datasheets/rfpa0133.pdf)
-* U8: [CC115L](datasheets/cc115L.pdf)
+* U3: Not found on the board. Could be the [HYT-271 humidity module](datasheets/hyt-271.pdf)
+* U4: [MEAS MS560702BA03 Barometric Pressure Sensor](datasheets/MS560702BA03.pdf)
+* U5: [Ublox CAM-M8Q-0-10 Concurrent GNSS receiver](datasheets/CAM-M8-FW3.pdf)
+* U6: [STM32F373C8T6 ARM Cortex-M4 32b MCU+FPU, 256KB Flash, 32KB SRAM](datasheets/stm32f373xxx)
+* U7: [RFPA0133 3 to 5V Programmable Gain Power Amplifier](datasheets/rfpa0133.pdf)
+* U8: [CC115L Value Line Transmitter](datasheets/cc115L.pdf)
 * Y1: 16MHz oscillator
 * Y2: 26MHz oscillator
+* Q3: [MMBT2222A](datasheets/mmbt2222a.pdf) (switches humidity sensor heating)
 
 # Edge connector pinout
 
@@ -50,6 +51,7 @@ Still WIP. I'm probing all the pins...
 4.
 5.
 6.
+11. PA1 		  ==> To temp probe 4
 12. PA2/USART2_TX ==> to Ublox GPS via 220ohm
 13. PA3/USART3_RX ==> to Ublox GPS via 220ohm
 26. PB13 		  ==> to LED1 via 180ohm
@@ -58,3 +60,22 @@ Still WIP. I'm probing all the pins...
 29. PA8 		  ==> to LED4 via 180ohm
 34. PA13/SWDIO	  ==> to edge card pin 8
 37. PA14/SWCLK	  ==> to edge card pin 5
+
+# Temp/Humidity flatflex pinout
+1. GND
+2. GND
+3. Heater 1 ==> to VCC
+4. NTC 1 ==> to STM32 PA1
+5. HYT-271 SDA
+6. GND
+7. HYT-271 VCC ==> to VCC
+8. HYT-271 SCL
+9. NTC 2
+10. Heater 2 ==> to Q3
+11. GND
+12. GND
+
+# Temp/Humidity flat flex specs
+Not much is known. From the iMet-4 datasheet, it seems that the glass bead thermistor's manufacturer is Shibaura. Model number could be PT3-51F-K14. 
+
+For the humidity sensor, the datasheets mentions a capacitive polymer, manufacturer's IST. I found three models that fit that description, and the HYT-271 is the most likely. It uses an I2C bus.
