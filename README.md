@@ -41,7 +41,7 @@ Component side │3 6│
 7. VBATT
 8. SWDIO (to STM32 PA13)
 
-#STM32 Wiring
+# STM32 Wiring
 Still WIP. I'm probing all the pins... 
 
 1.
