@@ -16,7 +16,7 @@ Seems to use 2mm FR4, but I'll measure it once I get my hands on calipers.
 * U3: Not found on the board. Could be the [HYT-271 humidity module](datasheets/hyt-271.pdf)
 * U4: [MEAS MS560702BA03 Barometric Pressure Sensor](datasheets/MS560702BA03.pdf)
 * U5: [Ublox CAM-M8Q-0-10 Concurrent GNSS receiver](datasheets/CAM-M8-FW3.pdf)
-* U6: [STM32F373C8TR ARM Cortex-M4 32b MCU+FPU, 64KB Flash, 32KB SRAM](datasheets/stm32f373xxx)
+* U6: [STM32F373C8T6 ARM Cortex-M4 32b MCU+FPU, 64KB Flash, 32KB SRAM](datasheets/stm32f373xxx)
 * U7: [RFPA0133 3 to 5V Programmable Gain Power Amplifier](datasheets/rfpa0133.pdf)
 * U8: [CC115L Value Line Transmitter](datasheets/cc115L.pdf)
 * Y1: 16MHz oscillator
@@ -42,7 +42,7 @@ Component side │3 6│
 6. VCC (+3.3V)
 7. VBATT
 8. SWDIO (to STM32 PA13)
-
+²
 # STM32 Pin Assignment
 Still WIP. I'm probing all the pins... 
 
@@ -54,10 +54,10 @@ Still WIP. I'm probing all the pins...
 6.
 11. PA1 		  ==> to temp probe 4
 12. PA2/USART2_TX ==> to Ublox GPS RXD via 220ohm
-13. PA3/USART3_RX ==> to Ublox GPS TXD via 220ohm
-26. PB13 		  ==> to LED1 via 180ohm
-27. PB14 		  ==> to LED2 via 180ohm
-28. PB15 		  ==> to LED3 via 180ohm
+13. PA3/USART2_RX ==> to Ublox GPS TXD via 220ohm
+26. PB14 		  ==> to LED1 via 180ohm
+27. PB15 		  ==> to LED2 via 180ohm
+28. PD8 		  ==> to LED3 via 180ohm
 29. PA8 		  ==> to LED4 via 180ohm
 34. PA13/SWDIO	  ==> to edge card pin 8
 37. PA14/SWCLK	  ==> to edge card pin 5
