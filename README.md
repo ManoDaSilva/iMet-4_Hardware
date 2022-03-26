@@ -1,4 +1,4 @@
-# iMet-4_Hardware
+# iMet-4 Hardware
 Since no data could be found about this specific model, I decided to dig into it. 
 Structure of this repository is based on [bazjo's work.](https://github.com/bazjo/RS41_Hardware/)
 
@@ -6,6 +6,7 @@ Structure of this repository is based on [bazjo's work.](https://github.com/bazj
 # Board pictures and structure
 This sonde's structure is very similar to the RS-41's. 
 ![Main Board](pictures/main_board.jpg?raw=true "Main Board")
+Seems to use 2mm FR4, but I'll measure it once I get my hands on calipers. 
 
 
 
@@ -15,7 +16,7 @@ This sonde's structure is very similar to the RS-41's.
 * U3: Not found on the board. Could be the [HYT-271 humidity module](datasheets/hyt-271.pdf)
 * U4: [MEAS MS560702BA03 Barometric Pressure Sensor](datasheets/MS560702BA03.pdf)
 * U5: [Ublox CAM-M8Q-0-10 Concurrent GNSS receiver](datasheets/CAM-M8-FW3.pdf)
-* U6: [STM32F373C8T6 ARM Cortex-M4 32b MCU+FPU, 256KB Flash, 32KB SRAM](datasheets/stm32f373xxx)
+* U6: [STM32F373C8TR ARM Cortex-M4 32b MCU+FPU, 64KB Flash, 32KB SRAM](datasheets/stm32f373xxx)
 * U7: [RFPA0133 3 to 5V Programmable Gain Power Amplifier](datasheets/rfpa0133.pdf)
 * U8: [CC115L Value Line Transmitter](datasheets/cc115L.pdf)
 * Y1: 16MHz oscillator
@@ -42,7 +43,7 @@ Component side │3 6│
 7. VBATT
 8. SWDIO (to STM32 PA13)
 
-# STM32 Wiring
+# STM32 Pin Assignment
 Still WIP. I'm probing all the pins... 
 
 1.
@@ -51,9 +52,9 @@ Still WIP. I'm probing all the pins...
 4.
 5.
 6.
-11. PA1 		  ==> To temp probe 4
-12. PA2/USART2_TX ==> to Ublox GPS via 220ohm
-13. PA3/USART3_RX ==> to Ublox GPS via 220ohm
+11. PA1 		  ==> to temp probe 4
+12. PA2/USART2_TX ==> to Ublox GPS RXD via 220ohm
+13. PA3/USART3_RX ==> to Ublox GPS TXD via 220ohm
 26. PB13 		  ==> to LED1 via 180ohm
 27. PB14 		  ==> to LED2 via 180ohm
 28. PB15 		  ==> to LED3 via 180ohm
@@ -61,7 +62,14 @@ Still WIP. I'm probing all the pins...
 34. PA13/SWDIO	  ==> to edge card pin 8
 37. PA14/SWCLK	  ==> to edge card pin 5
 
-# Temp/Humidity flatflex pinout
+
+# Temp/Humidity Flatflex specs.
+Not much is known. From the iMet-4 datasheet, it seems that the glass bead thermistor's manufacturer is Shibaura. Might be the RB1 series. 
+For the humidity sensor, the datasheets mentions a capacitive polymer, manufacturer's IST. I found three models that fit that description, and the HYT-271 is the most likely. It uses an I2C bus.
+There seems to be a 100ohm resistor underneath the humidity sensor, probably to keep it above the dew point. 
+
+Following pinout numbering follows the main board's connector.
+
 1. GND
 2. GND
 3. Heater 1 ==> to VCC
@@ -75,7 +83,6 @@ Still WIP. I'm probing all the pins...
 11. GND
 12. GND
 
-# Temp/Humidity flat flex specs
-Not much is known. From the iMet-4 datasheet, it seems that the glass bead thermistor's manufacturer is Shibaura. Model number could be PT3-51F-K14. 
-
-For the humidity sensor, the datasheets mentions a capacitive polymer, manufacturer's IST. I found three models that fit that description, and the HYT-271 is the most likely. It uses an I2C bus.
+# Software
+At this time, I'm don't have access an ST-Link interface, I still don't know whether there's a lockout bit or not. 
+As for building custom firmwares, a good start would be the [STM32 Arduino Core](https://github.com/stm32duino/Arduino_Core_STM32). This variant is supported, but it must be added to the boards.txt list. 
