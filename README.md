@@ -25,7 +25,7 @@ This sonde's structure is very similar to the RS-41's.
  ```
                 ┌───┐
                 │4 5│
-Component side  │3 6│
+Component side │3 6│
                 │2 7│
                 │1 8│
                 └───┘
