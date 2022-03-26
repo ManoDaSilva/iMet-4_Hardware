@@ -33,10 +33,22 @@ Component side │3 6│
 				
  ```
 1.
-2.
-3.
+2. RX (via R24/220ohm to STM32 PA10)
+3. TX (via R25/220ohm to STM32 PA9)
 4. GND
-5. PA14 (SWCLK)
+5. SWCLK (to STM32 PA14)
 6. VCC (+3.3V)
 7. VBATT
-8. PA13 (SWDIO)
+8. SWDIO (to STM32 PA13)
+
+#STM32 Wiring
+1.
+2.
+3.
+4.
+5.
+6.
+12. PA2/USART2_TX ==> to Ublox GPS via 220ohm
+13. PA3/USART3_RX ==> tu Ublox GPS via 220ohm
+34. PA13/SWDIO
+37. PA14/SWCLK
