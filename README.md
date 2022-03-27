@@ -86,7 +86,7 @@ Following pinout numbering follows the main board's connector.
 
 # Firmware
 The current firmware can be read with an ST-Link.
-On the edge connector is a serial connector (3.3V levels), and the following can be seen when monitoring the output at startup:
+On the edge connector is a serial port (3.3V levels, 9600baud), and the following can be seen when monitoring the output at startup:
 
 ```
 iMet-4 Radiosonde Firmware v2.06
