@@ -24,7 +24,6 @@ Seems to use 2mm FR4, but I'll measure it once I get my hands on calipers.
 * Q3: [MMBT2222A](datasheets/mmbt2222a.pdf) (switches humidity sensor heating)
 
 # Edge connector pinout
-
  ```
                 ┌───┐
                 │4 5│
@@ -64,9 +63,11 @@ Still WIP. I'm probing all the pins...
 
 
 # Temp/Humidity Flatflex specs.
+![Humidity Probe](pictures/humidity_probe.jpg?raw=true "Humidity Probe")
 Not much is known. From the iMet-4 datasheet, it seems that the glass bead thermistor's manufacturer is Shibaura. Might be the RB1 series. 
 For the humidity sensor, the datasheets mentions a capacitive polymer, manufacturer's IST. I found three models that fit that description, and the HYT-271 is the most likely. It uses an I2C bus.
 There seems to be a 100ohm resistor underneath the humidity sensor, probably to keep it above the dew point. 
+![Humidity Probe Closeup](pictures/humidity_probe_closeup.jpg?raw=true "Humidity Probe Closeup")
 
 Following pinout numbering follows the main board's connector.
 
@@ -83,6 +84,20 @@ Following pinout numbering follows the main board's connector.
 11. GND
 12. GND
 
-# Software
-At this time, I'm don't have access an ST-Link interface, I still don't know whether there's a lockout bit or not. 
-As for building custom firmwares, a good start would be the [STM32 Arduino Core](https://github.com/stm32duino/Arduino_Core_STM32). This variant is supported, but it must be added to the boards.txt list. 
+# Firmware
+The current firmware can be read with an ST-Link.
+On the edge connector is a serial connector (3.3V levels), and the following can be seen when monitoring the output at startup:
+
+```
+iMet-4 Radiosonde Firmware v2.06
+Flash configuration loaded successfully.
+Initializing pressure sensor...Online.
+Ublox CAM-M8Q configured successfully.
+CC115L Transmitter online and enabled.
+READY
+```
+No echo when commands are typed, but I get an ERR01 whenever I send something. After about 20s, the serial interface won't accept any commands.
+
+
+# Custom Software
+A good start would be the [STM32 Arduino Core](https://github.com/stm32duino/Arduino_Core_STM32). This variant is supported, but it must be added to the boards.txt list. 
