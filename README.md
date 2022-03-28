@@ -2,13 +2,10 @@
 Since no data could be found about this specific model, I decided to dig into it. 
 Structure of this repository is based on [bazjo's work.](https://github.com/bazjo/RS41_Hardware/)
 
-
 # Board pictures and structure
 This sonde's structure is very similar to the RS-41's. 
 ![Main Board](pictures/main_board.jpg?raw=true "Main Board")
 Seems to use 2mm FR4, but I'll measure it once I get my hands on calipers. 
-
-
 
 # Main component list
 * U1: K30 - Unidentified.
@@ -52,15 +49,22 @@ Still WIP. I'm probing all the pins...
 5.
 6.
 11. PA1 		  ==> to temp probe 4
-12. PA2/USART2_TX ==> to Ublox GPS RXD via 220ohm
-13. PA3/USART2_RX ==> to Ublox GPS TXD via 220ohm
+12. PA2/USART2_TX ==> to Ublox GPS RXD via 220ohm (9600 baud)
+13. PA3/USART2_RX ==> to Ublox GPS TXD via 220ohm (9600 baud)
+20. PB2			  ==> to Power On circuitry
+22. PE9			  ==> to CC115L GD0 via R30
 26. PB14 		  ==> to LED1 via 180ohm
 27. PB15 		  ==> to LED2 via 180ohm
 28. PD8 		  ==> to LED3 via 180ohm
 29. PA8 		  ==> to LED4 via 180ohm
 34. PA13/SWDIO	  ==> to edge card pin 8
 37. PA14/SWCLK	  ==> to edge card pin 5
-
+38. PA15/SPI1_NSS ==> to CC115L chip select?
+39.	PB3/SPI1_SCK  ==> to CC115L SCK
+40. PB4/SPI1_MISO ==> to CC115L SO
+41. PB5/SPI1_MOSI ==> to CC115L SI
+45. PB8/I2C1_SCL  ==> to MS5607 pressure sensor SCL (address 0x77)
+46. PB9/I2C1_SDA  ==> to MS5607 pressure sensor SDA (address 0x77)
 
 # Temp/Humidity Flatflex specs.
 ![Humidity Probe](pictures/humidity_probe.jpg?raw=true "Humidity Probe")
@@ -97,7 +101,6 @@ CC115L Transmitter online and enabled.
 READY
 ```
 No echo when commands are typed, but I get an ERR01 whenever I send something. After about 20s, the serial interface won't accept any commands.
-
 
 # Custom Software
 A good start would be the [STM32 Arduino Core](https://github.com/stm32duino/Arduino_Core_STM32). This variant is supported, but it must be added to the boards.txt list. 
