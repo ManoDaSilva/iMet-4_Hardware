@@ -103,4 +103,5 @@ READY
 No echo when commands are typed, but I get an ERR01 whenever I send something. After about 20s, the serial interface won't accept any commands.
 
 # Custom Software
-A good start would be the [STM32 Arduino Core](https://github.com/stm32duino/Arduino_Core_STM32). This variant is supported, but it must be added to the boards.txt list. 
+A good start would be the [STM32 Arduino Core](https://github.com/stm32duino/Arduino_Core_STM32). This variant is supported, but it must be added to the boards.txt list.
+I added some basic scripts [in this repository](https://github.com/ManoDaSilva/iMet-4_Software), feel free to contribute :)  
